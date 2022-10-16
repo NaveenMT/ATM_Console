@@ -1,0 +1,254 @@
+#include<stdio.h>
+#include<time.h>
+int len(long long int n)
+{
+    int a,c=0;
+    while(n!=0){
+        a=n%10;
+        c++;
+        n/=10;
+    }
+    return c;
+}
+int main()
+{
+    printf("Welcome to the MN ATM services!!!...........................");
+    printf("\n----------------------------------------------------------------------------------------------");
+    printf("\nPlease, Insert an ATM card!!!.................");
+    printf("\n1. Set a PIN for ATM card.\n2. If you have a PIN then Continue!!!.............");
+    int c;
+    int op;
+    printf("\nEnter your choice : ");
+    scanf("%d",&c);
+    switch(c)
+    {
+        case 1:
+            printf("\n1. Set a PIN for new ATM card. \n2. Set a PIN for old ATM card.");
+            printf("\nEnter your choice : ");
+            int n;
+            scanf("%d",&n);
+            switch(n)
+            {
+                case 1:
+                    printf("\nPlease Enter your mobile number, which is given to the bank.\n");
+                    long long int no;
+                    printf("\nYour phone number is being verified");
+                    scanf("%lld",&no);
+                    while(len(no)!=10){
+                        printf("\nPlease enter the valid phone number!!!.......\n");
+                        scanf("%lld",&no);
+                    }
+                    printf("\nAn OTP is send  to your mobile number!!!.............");
+                    printf("\nPlease enter a four digit OTP : ");
+                    int o;
+                    scanf("%d",&o);
+                    while(len(o)!=4){
+                        printf("\nPlease enter the valid OTP!!!.......\n");
+                        scanf("%d",&o);                    
+                    }
+                    printf("\nEnter a four digit number for your card PIN!!!.....");
+                    int p;
+                    scanf("%d",&p);
+                     while(len(p)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&p);                    
+                    }
+                    printf("\nThe PIN for your ATM card is setted donot share with others!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    break;
+                case 2:
+                    printf("\nPlease, enter the old PIN of your ATM card!!!........");
+                    int o2;
+                    scanf("%d",&o2);
+                    while(len(o2)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&o2);
+                    }
+                    printf("\nPlease Enter your mobile number, which is given to the bank.\n");
+                    long long int no1;
+                    printf("\nYour phone number is being verified");
+                    scanf("%lld",&no1);
+                    while(len(no1)!=10){
+                        printf("\nPlease enter the valid phone number!!!.......\n");
+                        scanf("%lld",&no1);
+                    }
+                    printf("\nAn OTP is send  to your mobile number!!!.............");
+                    printf("\nPlease enter a four digit OTP : ");
+                    int o1;
+                    scanf("%d",&o1);
+                    while(len(o1)!=4){
+                        printf("\nPlease enter the valid OTP!!!.......\n");
+                        scanf("%d",&o1);                    
+                    }
+                    printf("\nPlease, enter a new PIN for your ATM card!!!.....");
+                    int x;
+                    scanf("%d",&x);
+                     while(len(x)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&x);                    
+                    }
+                    printf("\nThe PIN for your ATM card is setted donot share with others!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    break;
+                default:
+                    printf("\nInvalid selection");
+                    break;
+            }
+            break;
+        case 2:
+            printf("\n1. Deposite amount\n2. Withdraw amount\n3. Check balance");
+            printf("\nEnter your choice : ");
+            int qq;
+            scanf("%d",&qq);
+            switch(qq){
+                case 1:
+                    printf("\nPlease, put your money into a ATM case counter box!!!..............\nBut the limited amount is 49,999 only!!!!!!!!!!!!!!!!!\nAnd also we take a tax of 10 rupees per each 10,000 from your bank account");
+                    printf("\nThe only acceptable money is INR 100,500,2000 only!!!!!!!!!!!\n");
+                    long int amt;
+                    printf("\nEnter the amount : ");
+                    scanf("%ld",&amt);
+                    long int lim=49999;
+                    while(amt>lim){
+                        printf("\nThe amount is out of limt!!!!\nPlease take your amount and again put the amount with limit!!!!");
+                        scanf("%ld",&amt);
+                    }
+                    printf("\nThe total money is %ld",amt);
+                    printf("\nIf you want to add more money!!!.........y/n -> 1/0 : ");
+                    scanf("%d",&op);
+                    long int op1;
+                    int c=0;
+                    while(op==1){
+                        printf("\nEnter the amount : ");
+                        long int amt1;
+                        scanf("%ld",&amt1);
+                        op1=amt+amt1;
+                        if(op1>lim){
+                            printf("\nMoney in out of range donot add to the amount!!!!");
+                            op1=amt;
+                        }
+                        else{
+                            amt=op1;
+                            c++;
+                        }
+                        printf("\nThe total money is %ld",op1);
+                        printf("\nIf you want to add more money!!!.........y/n -> 1/0 : ");
+                        scanf("%d",&op);
+                    }
+                    if(c!=0){
+                        amt=op1;
+                    }
+                    printf("\nThe total money is %ld",amt);
+                    printf("\nPlease enter your 4 digit PIN!!!......");
+                    int pi;
+                    scanf("%d",&pi);
+                    while(len(pi)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&pi);                    
+                    }
+                    printf("\nPlease wait! While we are processing........");
+                    printf("\nThe amount %ld is deposited on your account successfully!!!.......",amt);
+                    int tx;
+                    tx=amt/10000;
+                    printf("\nThe amount %d is taken from your account for tax!!!......",tx*10);
+                    printf("\nPlease take your receipt!!!......");
+                    printf("\n\n\n\n#################################################");
+                    printf("\n     MN ATM services...");
+                    int act;
+                    time_t t;
+                    time(&t);
+                    printf("\nOn acct no.: xxxx%u\nAmount : %ld INR\nDeposited on %s\nTax is %d",act,amt,ctime(&t),tx*10);
+                    printf("\n#################################################");
+                    break;
+                case 2:
+                    printf("Please enter the amount for withdraw and the limit up to 49,999 only!!!.......\n");
+                    long int limt=49999;
+                    long int amount;
+                    scanf("%ld",&amount);
+                    while(amount>limt){
+                        printf("\nThe amount is out of limt!!!!\nPlease enter the amount within the  limit!!!!");
+                        scanf("%ld",&amount);
+                    }
+                    printf("\nThe total money is %ld",amount);
+                    int opt;
+                     printf("\nIf you want to add more money!!!.........y/n -> 1/0 : ");
+                    scanf("%d",&opt);
+                    long int opt1;
+                    int c1=0;
+                    while(opt==1){
+                        printf("\nEnter the amount : ");
+                        long int amount1;
+                        scanf("%ld",&amount1);
+                        opt1=amount+amount1;
+                        if(opt1>limt){
+                            printf("\nMoney in out of range donot add to the amount!!!!");
+                            opt1=amount;
+                        }
+                        else{
+                            amount=opt1;
+                            c1++;
+                        }
+                        printf("\nThe total money is %ld",opt1);
+                        printf("\nIf you want to add more money!!!.........y/n -> 1/0 : ");
+                        scanf("%d",&opt);
+                    }
+                    if(c1!=0){
+                        amount=opt1;
+                    }
+                    printf("\nThe total money is %ld",amount);
+                    printf("\nPlease enter your 4 digit PIN!!!......\n");
+                    int pin;
+                    scanf("%d",&pin);
+                    while(len(pin)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&pin);                    
+                    }
+                    printf("\nPlease wait! While we are processing........");
+                    printf("\nTake the amount!!!.................");
+                    int tax;
+                    tax=amount/10000;
+                    printf("\nThe amount %d is taken from your account for tax!!!......",tax*10);
+                    printf("\nPlease take your receipt!!!......");
+                    printf("\n\n\n\n#################################################");
+                    printf("\n     MN ATM services...");
+                    int act1;
+                    time_t t1;
+                    time(&t1);
+                    printf("\nOn acct no.: xxxx%u\nAmount : %ld INR\nWithdrawn on %s\nTax is %d",act1,amount,ctime(&t1),tax*10);
+                    printf("\n#################################################");
+                    break;
+                case 3:
+                    printf("\nEnter your PIN!!!....\n");
+                    int Pin;
+                    scanf("%d",&Pin);
+                    while(len(Pin)!=4){
+                        printf("\nPlease enter the valid PIN!!!.......\n");
+                        scanf("%d",&Pin);                    
+                    }
+                    printf("\nPlease wait! While we are processing........");
+                    unsigned int bal;
+                    printf("%u",bal);
+                    printf("\nPlease take your receipt!!!......");
+                    printf("\n\n\n\n#################################################");
+                    printf("\n     MN ATM services...");
+                    int act2;
+                    time_t t2;
+                    time(&t2);
+                     printf("\nOn acct no.: xxxx%u\nBalance %u INR\n%s",act2,bal,ctime(&t2));
+                     printf("\n#################################################");
+                    break;
+                default:
+                    printf("\nInvalid option");
+                    break;
+            }
+            break;
+        default:
+            printf("\nInvalid option");
+            break;
+    }
+    printf("\n\n\nThank you! for visiting!!!....");
+    printf("\nVisit Again!!!.........");
+    printf("\n----------------------------------------------------------------------------------------------");
+}
+
+
+
+
+
